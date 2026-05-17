@@ -1,6 +1,26 @@
 (function () {
   'use strict';
 
+  /* ============ TRUE VISIBLE VIEWPORT HEIGHT ============
+   * Some mobile browsers (Yandex iOS, in-app webviews, etc.) keep a
+   * permanent bottom toolbar that 100vh/100dvh/100svh do NOT account
+   * for. We use visualViewport.height to pin the device frame to the
+   * actually-visible area so the nowplaying bar, tabbar and popup
+   * always sit above any browser chrome.
+   */
+  function setAppHeight() {
+    const h = (window.visualViewport && window.visualViewport.height)
+      || window.innerHeight;
+    document.documentElement.style.setProperty('--app-h', h + 'px');
+  }
+  setAppHeight();
+  window.addEventListener('resize', setAppHeight);
+  window.addEventListener('orientationchange', setAppHeight);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setAppHeight);
+    window.visualViewport.addEventListener('scroll', setAppHeight);
+  }
+
   const screens = {
     home:     document.getElementById('screen-home'),
     tiers:    document.getElementById('screen-tiers'),

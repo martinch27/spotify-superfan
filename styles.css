@@ -17,11 +17,14 @@ body {
 }
 
 /* ============ DEVICE FRAME ============ */
+:root { --app-h: 100vh; }
+@supports (height: 100dvh) { :root { --app-h: 100dvh; } }
+@supports (height: 100svh) { :root { --app-h: 100svh; } }
+
 .device-frame {
   position: relative;
   width: 100vw;
-  height: 100vh;          /* fallback */
-  height: 100dvh;         /* tracks the actual visible viewport on mobile */
+  height: var(--app-h);    /* JS overrides with visualViewport.height */
   max-width: 430px;
   margin: 0 auto;
   background: #000;
