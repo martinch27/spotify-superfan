@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <meta name="theme-color" content="#000000" />
-<title>Spotify — Super-Fan</title>
+<title>Spotify — SuperFan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -185,7 +185,7 @@
     </nav>
   </section>
 
-  <!-- ============ POPUP — Super-Fan invite ============ -->
+  <!-- ============ POPUP — SuperFan invite ============ -->
   <div class="overlay" id="overlay">
     <div class="popup" role="dialog" aria-modal="true">
       <button class="popup__close" id="popupClose" aria-label="Закрити">×</button>
@@ -196,22 +196,38 @@
           <svg viewBox="0 0 24 24" width="14" height="14" fill="#000"><path d="M12 2 15 9l7 .8-5.2 4.8L18 22l-6-3.5L6 22l1.2-7.4L2 9.8 9 9z"/></svg>
           <span>ТОП 1%</span>
         </div>
-        <div class="popup__artist">
-          <div class="popup__artist-name">Плейліст дня 1</div>
-          <div class="popup__artist-sub">237 542 Super-Fans · ти №1 847</div>
+
+        <div class="popup__avatar">
+          <img src="carti-avatar.jpg" alt="Playboi Carti" />
+          <span class="popup__avatar-ring"></span>
+        </div>
+
+        <div class="bubble bubble--1" aria-hidden="true">
+          <span class="bubble__num">120</span><span class="bubble__lbl">media</span>
+        </div>
+        <div class="bubble bubble--2" aria-hidden="true">
+          <span class="bubble__num">4</span><span class="bubble__lbl">VIP drops</span>
+        </div>
+        <div class="bubble bubble--3" aria-hidden="true">
+          <span class="bubble__num">12</span><span class="bubble__lbl">audio</span>
+        </div>
+        <div class="bubble bubble--4" aria-hidden="true">
+          <span class="bubble__num">5</span><span class="bubble__lbl">snippets</span>
+        </div>
+        <div class="bubble bubble--5" aria-hidden="true">
+          <span class="bubble__num">50+</span><span class="bubble__lbl">posts</span>
         </div>
       </div>
       <div class="popup__body">
+        <div class="popup__artist">
+          <div class="popup__artist-name">Playboi Carti</div>
+          <div class="popup__artist-sub">237 542 SuperFans · ти №1 847</div>
+        </div>
         <h2 class="popup__title">Вітаю!</h2>
         <p class="popup__text">
-          Ти потрапив у <b>топ 1% слухачів Плейліста дня 1</b>. Стань ближче — оформи <b>Super-Fan</b>: ексклюзивні релізи за 30 днів до виходу, особисті повідомлення від команди плейліста, presale на концерти.
+          Ти потрапив у <b>топ 1% фанів Playboi Carti</b>. Стань ближче — оформи <b>SuperFan</b> і отримай повний доступ до контенту, який артист створює тільки для своїх.
         </p>
-        <div class="popup__perks">
-          <div class="perk"><span class="perk__icon">🎧</span><span>Pre-release треки за 30 днів</span></div>
-          <div class="perk"><span class="perk__icon">💬</span><span>Прямий зв'язок з командою</span></div>
-          <div class="perk"><span class="perk__icon">🎟️</span><span>Presale на тури</span></div>
-        </div>
-        <button class="btn btn--primary" id="goTiers">Стати Super-Fan</button>
+        <button class="btn btn--primary" id="goTiers">Стати SuperFan</button>
         <button class="btn btn--ghost" id="popupLater">Можливо пізніше</button>
       </div>
     </div>
@@ -223,7 +239,7 @@
       <button class="iconbtn" data-back aria-label="Назад">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <span class="subheader__title">Super-Fan</span>
+      <span class="subheader__title">SuperFan</span>
       <span class="iconbtn" aria-hidden="true"></span>
     </header>
 
@@ -232,9 +248,9 @@
       <div class="tiers__hero-content">
         <div class="tiers__badge">
           <svg viewBox="0 0 24 24" width="12" height="12" fill="#000"><path d="M12 2 15 9l7 .8-5.2 4.8L18 22l-6-3.5L6 22l1.2-7.4L2 9.8 9 9z"/></svg>
-          ТОП 1% · ПЛЕЙЛІСТ ДНЯ 1
+          ТОП 1% · PLAYBOI CARTI
         </div>
-        <h1 class="tiers__title">Обери рівень<br/>Super-Fan</h1>
+        <h1 class="tiers__title">Обери рівень<br/>SuperFan</h1>
         <p class="tiers__sub">Ціна за місяць. Скасування у будь-який момент.</p>
       </div>
     </div>
@@ -251,7 +267,7 @@
             <div class="tier__radio"></div>
           </div>
           <ul class="tier__perks">
-            <li>Super-Fan badge у профілі</li>
+            <li>SuperFan badge у профілі</li>
             <li>Закритий feed</li>
             <li>Early access до нових треків (24–48 год)</li>
           </ul>
@@ -319,8 +335,8 @@
         <div class="checkout__row">
           <div>
             <div class="checkout__label">Підписка</div>
-            <div class="checkout__value" id="checkoutTierName">Super-Fan · Insider</div>
-            <div class="checkout__sub">Плейліст дня 1</div>
+            <div class="checkout__value" id="checkoutTierName">SuperFan · Insider</div>
+            <div class="checkout__sub">Playboi Carti</div>
           </div>
           <div class="checkout__price" id="checkoutTierPrice">$19,99</div>
         </div>
@@ -371,9 +387,9 @@
         </div>
       </div>
 
-      <h1 class="success__title">Ласкаво просимо в Super-Fan!</h1>
+      <h1 class="success__title">Ласкаво просимо в SuperFan!</h1>
       <p class="success__text">
-        Тепер ти один з найближчих фанів <b>Плейліста дня 1</b>. Перший ексклюзив вже чекає у закритому feed.
+        Тепер ти один з найближчих фанів <b>Playboi Carti</b>. Перший ексклюзив вже чекає у закритому feed.
       </p>
 
       <div class="success__perks">

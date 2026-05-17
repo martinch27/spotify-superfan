@@ -68,9 +68,9 @@
   /* ============ TIER → CHECKOUT ============ */
   const tierPrices = { essential: '$4,99', insider: '$19,99', inner: '$99,99' };
   const tierNames  = {
-    essential: 'Super-Fan · Essential',
-    insider:   'Super-Fan · Insider',
-    inner:     'Super-Fan · Inner Circle',
+    essential: 'SuperFan · Essential',
+    insider:   'SuperFan · Insider',
+    inner:     'SuperFan · Inner Circle',
   };
 
   document.getElementById('goCheckout').addEventListener('click', () => {

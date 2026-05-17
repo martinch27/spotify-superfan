@@ -369,25 +369,22 @@ body {
 
 .popup__art {
   position: relative;
-  height: 180px;
+  height: 300px;
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  padding: 18px;
 }
 .popup__art-bg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 30% 30%, rgba(232,90,58,.6) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 70%, rgba(155,46,28,.7) 0%, transparent 60%),
-    linear-gradient(135deg, #6a1810 0%, #2a0a05 100%);
+    radial-gradient(ellipse at 30% 30%, rgba(232,90,58,.55) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 75%, rgba(155,46,28,.65) 0%, transparent 60%),
+    linear-gradient(135deg, #5a1410 0%, #1c0703 100%);
 }
 .popup__art-glow {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 100%, rgba(30,215,96,.18) 0%, transparent 50%);
+    radial-gradient(circle at 50% 50%, rgba(30,215,96,.12) 0%, transparent 50%);
 }
 .popup__badge {
   position: absolute;
@@ -402,20 +399,124 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
-  z-index: 2;
+  z-index: 5;
   letter-spacing: .3px;
 }
-.popup__artist { position: relative; z-index: 2; }
+
+/* ============ AVATAR (centered in popup__art) ============ */
+.popup__avatar {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  overflow: visible;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  box-shadow:
+    0 0 0 3px #1ed760,
+    0 0 30px rgba(30,215,96,.45),
+    0 14px 40px rgba(0,0,0,.55);
+}
+.popup__avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+.popup__avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(30,215,96,.55);
+  pointer-events: none;
+  animation: avatar-pulse 2.6s cubic-bezier(0,0,.2,1) infinite;
+}
+@keyframes avatar-pulse {
+  0%   { transform: scale(1);    opacity: .85; }
+  80%  { opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* ============ FLOATING GLASS BUBBLES ============ */
+.bubble {
+  position: absolute;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.06) 100%);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid rgba(255,255,255,.28);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  z-index: 4;
+  padding: 4px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.32),
+    inset 0 -10px 18px rgba(0,0,0,.15),
+    0 8px 24px rgba(0,0,0,.35);
+  will-change: transform;
+}
+.bubble__num {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1;
+  color: #1ed760;
+  letter-spacing: -.4px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+.bubble__lbl {
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 3px;
+  color: rgba(255,255,255,.92);
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+
+/* positions around the centered avatar */
+.bubble--1 { top: 8%;  left: 4%;             animation: bob-a 5.2s ease-in-out infinite; }
+.bubble--2 { top: 2%;  right: 10%;           animation: bob-b 6.4s ease-in-out infinite -.7s; }
+.bubble--3 { top: 44%; right: -2%;           animation: bob-c 5.8s ease-in-out infinite -1.4s; }
+.bubble--4 { bottom: 10%; left: 0%;          animation: bob-b 7.1s ease-in-out infinite -2s; }
+.bubble--5 { bottom: 2%;  right: 22%;        animation: bob-a 6.0s ease-in-out infinite -.4s; }
+
+@keyframes bob-a {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(2px, -7px); }
+}
+@keyframes bob-b {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(-4px, -3px); }
+  66%      { transform: translate(3px, -6px); }
+}
+@keyframes bob-c {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-6px, -4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble, .popup__avatar-ring { animation: none; }
+}
+
+/* ============ ARTIST META (now inside popup__body) ============ */
+.popup__artist { margin-bottom: 2px; }
 .popup__artist-name {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   letter-spacing: -.5px;
-  margin-bottom: 2px;
+  line-height: 1.1;
 }
 .popup__artist-sub {
   font-size: 12px;
-  color: rgba(255,255,255,.85);
+  color: #b3b3b3;
   font-weight: 500;
+  margin-top: 4px;
 }
 
 .popup__body {
