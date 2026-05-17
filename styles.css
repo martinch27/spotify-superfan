@@ -213,6 +213,28 @@ body {
 .hcard__badge--pink { color: #fff; }
 .hcard__badge--green { color: #fff; }
 .hcard__badge--mint { color: #fff; }
+
+/* Featured "SuperFan" card: photo background with a frosted-glass chip
+   so the label reads clearly over busy imagery. */
+.hcard__cover--img { background: #1a1a1a; }
+.hcard__cover--img > img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hcard__badge--super {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(40,40,40,.72);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  color: #fff;
+  z-index: 3;
+}
 .hcard__mask {
   position: absolute;
   inset: 0;
@@ -262,6 +284,11 @@ body {
   overflow: hidden;
   flex-shrink: 0;
   background: #2a2a2a;
+}
+.nowplaying__cover img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .nowplaying__info { flex: 1; min-width: 0; }
 .nowplaying__title {
@@ -462,11 +489,11 @@ body {
   will-change: transform;
 }
 .bubble__num {
-  font-size: 17px;
-  font-weight: 800;
+  font-size: 21px;
+  font-weight: 900;
   line-height: 1;
   color: #1ed760;
-  letter-spacing: -.4px;
+  letter-spacing: -.5px;
   text-shadow: 0 1px 2px rgba(0,0,0,.4);
 }
 .bubble__lbl {
