@@ -67,10 +67,10 @@
   document.getElementById('goSuccess').addEventListener('click', (e) => {
     const btn = e.currentTarget;
     btn.style.opacity = '.7';
-    btn.textContent = 'Обработка платежа…';
+    btn.textContent = 'Обробка платежу…';
     setTimeout(() => {
       btn.style.opacity = '';
-      btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right:6px;vertical-align:-3px"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1 15-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10z"/></svg>Оформить за <span id="payAmount">' + document.getElementById('checkoutTotal').textContent + '</span>';
+      btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right:6px;vertical-align:-3px"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1 15-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10z"/></svg>Оформити за <span id="payAmount">' + document.getElementById('checkoutTotal').textContent + '</span>';
       show('success');
     }, 900);
   });
@@ -91,7 +91,7 @@
   /* ============ NOWPLAYING tap → reopens popup (extra hook for jury demo) ============ */
   document.getElementById('nowplaying').addEventListener('click', openPopup);
 
-  /* Card tap on Carti mix also opens popup */
-  document.getElementById('card-carti').addEventListener('click', openPopup);
+  /* Card tap on the featured mix also opens popup */
+  document.getElementById('card-featured').addEventListener('click', openPopup);
 
 })();
