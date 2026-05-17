@@ -23,6 +23,7 @@
 
   const screens = {
     home:     document.getElementById('screen-home'),
+    profile:  document.getElementById('screen-profile'),
     tiers:    document.getElementById('screen-tiers'),
     checkout: document.getElementById('screen-checkout'),
     success:  document.getElementById('screen-success'),
@@ -34,7 +35,7 @@
     Object.values(screens).forEach(s => s.classList.remove('active'));
     screens[name].classList.add('active');
     if (history[history.length - 1] !== name) history.push(name);
-    const scroller = screens[name].querySelector('.content, .tiers__list, .checkout, .success');
+    const scroller = screens[name].querySelector('.content, .tiers__list, .checkout, .success, .profile');
     if (scroller) scroller.scrollTop = 0;
   }
 
@@ -58,7 +59,7 @@
 
   document.getElementById('goTiers').addEventListener('click', () => {
     closePopup();
-    show('tiers');
+    show('profile');
   });
 
   overlay.addEventListener('click', (e) => {
@@ -73,15 +74,28 @@
     inner:     'SuperFan · Inner Circle',
   };
 
-  document.getElementById('goCheckout').addEventListener('click', () => {
-    const sel = document.querySelector('input[name="tier"]:checked');
-    const tier = sel ? sel.value : 'insider';
+  function openCheckout(tier) {
+    tier = tier || 'essential';
     document.getElementById('checkoutTierName').textContent = tierNames[tier];
     document.getElementById('checkoutTierPrice').textContent = tierPrices[tier];
     document.getElementById('checkoutTotal').textContent = tierPrices[tier];
     document.getElementById('payAmount').textContent = tierPrices[tier];
     show('checkout');
+  }
+
+  /* Any locked content tile on the profile screen → checkout @ $4,99 */
+  document.querySelectorAll('.locked-tile').forEach(tile => {
+    tile.addEventListener('click', () => openCheckout('essential'));
   });
+
+  /* Legacy tier-selection "Continue" button still works if reached */
+  const goCheckoutBtn = document.getElementById('goCheckout');
+  if (goCheckoutBtn) {
+    goCheckoutBtn.addEventListener('click', () => {
+      const sel = document.querySelector('input[name="tier"]:checked');
+      openCheckout(sel ? sel.value : 'insider');
+    });
+  }
 
   /* ============ CHECKOUT → SUCCESS ============ */
   document.getElementById('goSuccess').addEventListener('click', (e) => {
