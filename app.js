@@ -83,9 +83,12 @@
     show('checkout');
   }
 
-  /* Any locked content tile on the profile screen → checkout @ $4,99 */
-  document.querySelectorAll('.locked-tile').forEach(tile => {
-    tile.addEventListener('click', () => openCheckout('essential'));
+  /* Any locked post (or its CTA button) on the profile feed → checkout @ $4,99 */
+  document.querySelectorAll('.post-locked__cta, .post-locked').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openCheckout('essential');
+    });
   });
 
   /* Legacy tier-selection "Continue" button still works if reached */
