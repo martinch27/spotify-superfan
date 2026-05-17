@@ -369,16 +369,16 @@ body {
 
 .popup__art {
   position: relative;
-  height: 300px;
+  height: 320px;
   overflow: hidden;
 }
 .popup__art-bg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 30% 30%, rgba(232,90,58,.55) 0%, transparent 55%),
-    radial-gradient(ellipse at 70% 75%, rgba(155,46,28,.65) 0%, transparent 60%),
-    linear-gradient(135deg, #5a1410 0%, #1c0703 100%);
+    radial-gradient(ellipse at 30% 30%, rgba(120,120,120,.45) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 75%, rgba(60,60,60,.55) 0%, transparent 60%),
+    linear-gradient(135deg, #2a2a2a 0%, #0f0f0f 100%);
 }
 .popup__art-glow {
   position: absolute;
@@ -479,12 +479,15 @@ body {
   letter-spacing: .3px;
 }
 
-/* positions around the centered avatar */
-.bubble--1 { top: 8%;  left: 4%;             animation: bob-a 5.2s ease-in-out infinite; }
-.bubble--2 { top: 2%;  right: 10%;           animation: bob-b 6.4s ease-in-out infinite -.7s; }
-.bubble--3 { top: 44%; right: -2%;           animation: bob-c 5.8s ease-in-out infinite -1.4s; }
-.bubble--4 { bottom: 10%; left: 0%;          animation: bob-b 7.1s ease-in-out infinite -2s; }
-.bubble--5 { bottom: 2%;  right: 22%;        animation: bob-a 6.0s ease-in-out infinite -.4s; }
+/* positions tight around the avatar (orbital ~108px from popup center).
+   Anchored to popup horizontal center via left:50% + margin-left so the
+   layout stays symmetric on any popup width. */
+.bubble { left: 50%; }
+.bubble--1 { top: 16px;  margin-left: -36px; animation: bob-a 5.2s ease-in-out infinite; }      /* 12 o'clock */
+.bubble--2 { top: 91px;  margin-left: 67px;  animation: bob-b 6.4s ease-in-out infinite -.7s; } /* upper right */
+.bubble--3 { top: 211px; margin-left: 27px;  animation: bob-c 5.8s ease-in-out infinite -1.4s;} /* lower right */
+.bubble--4 { top: 211px; margin-left: -99px; animation: bob-b 7.1s ease-in-out infinite -2s; }  /* lower left */
+.bubble--5 { top: 91px;  margin-left: -139px;animation: bob-a 6.0s ease-in-out infinite -.4s; } /* upper left */
 
 @keyframes bob-a {
   0%, 100% { transform: translate(0, 0); }
