@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Internal strategy docs — not for public repo
+marketing-strategy-final.md
+super_fan_90day_gtm_plan.md
+report.md
+
+# Source screenshot reference (3MB, not needed for site)
+IMG_3119.PNG
+
+# Claude
+.claude/
