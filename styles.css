@@ -782,7 +782,8 @@ body {
 
 .post-locked__body {
   background: #2a2a2a;
-  aspect-ratio: 4 / 3;
+  min-height: 220px;
+  aspect-ratio: 4 / 3;     /* progressive enhancement: ignored on Safari <15.4 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -819,12 +820,9 @@ body {
   letter-spacing: -.1px;
   transition: background .15s ease;
 }
-.post-locked__cta::before {
-  content: '';
-  width: 14px; height: 14px;
-  background: currentColor;
-  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M17 9V7a5 5 0 0 0-10 0v2H5v12h14V9zM9 7a3 3 0 0 1 6 0v2H9zm3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/></svg>") center/contain no-repeat;
-          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M17 9V7a5 5 0 0 0-10 0v2H5v12h14V9zM9 7a3 3 0 0 1 6 0v2H9zm3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/></svg>") center/contain no-repeat;
+.post-locked__cta svg {
+  flex-shrink: 0;
+  fill: currentColor;
 }
 .post-locked__cta:active { background: #19c455; }
 
