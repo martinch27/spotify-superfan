@@ -734,7 +734,7 @@ body {
 
 /* Vertical feed of locked posts. Each post = gray card with a small
    header (avatar + name + type), a gray body with a lock icon, and a
-   full-width green "Розблокувати" button at the bottom. */
+   full-width green "Unlock" button at the bottom. */
 .profile__feed {
   display: flex;
   flex-direction: column;
