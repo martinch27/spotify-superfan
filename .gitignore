@@ -6,8 +6,12 @@ marketing-strategy-final.md
 super_fan_90day_gtm_plan.md
 report.md
 
-# Source screenshot reference (3MB, not needed for site)
-IMG_3119.PNG
+# Source screenshot references (not needed for site)
+IMG_*.PNG
+IMG_*.png
+IMG_*.JPG
+IMG_*.jpg
+IMG_*.jpeg
 
 # Claude
 .claude/
