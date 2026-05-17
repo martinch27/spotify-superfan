@@ -175,8 +175,11 @@ body {
   display: flex;
   gap: 14px;
   overflow-x: auto;
-  margin: 0 -16px;
-  padding: 0 16px 6px;
+  /* No negative margin: first card aligns to .content's interior left
+     edge (same x as library grid + section title). Right side keeps
+     bleed via -16px so the last card can peek under the screen edge. */
+  margin: 0 -16px 0 0;
+  padding: 0 16px 6px 0;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
@@ -225,26 +228,29 @@ body {
   display: block;
 }
 /* SuperFan label uses the same typography as other card badges
-   (.hcard__badge base: 16px / 800, bottom:8 left:8). Readability
-   over the photo comes from .hcard__matte — a frosted glass strip
-   behind the label, not a chip around it. */
-.hcard__badge--super {
-  color: #fff;
-  z-index: 3;
-  text-shadow: 0 1px 4px rgba(0,0,0,.55);
-}
+   (16px / 800, bottom:8 left:8). The label lives INSIDE .hcard__matte
+   so backdrop-filter and z-index don't fight each other across siblings
+   on iOS Safari — the matte blurs+darkens the photo behind it, and the
+   label sits on top of that frosted area as a child. */
 .hcard__matte {
   position: absolute;
   left: 0; right: 0;
   bottom: 0;
-  height: 60px;
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
-  background: linear-gradient(180deg, rgba(20,20,20,.15) 0%, rgba(20,20,20,.6) 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 55%, #000 100%);
-          mask-image: linear-gradient(180deg, transparent 0%, #000 55%, #000 100%);
-  pointer-events: none;
+  height: 64px;
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.85) 100%);
   z-index: 1;
+}
+.hcard__badge--super {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -.3px;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.6);
 }
 .hcard__mask {
   position: absolute;
