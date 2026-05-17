@@ -12,6 +12,9 @@ IMG_*.png
 IMG_*.JPG
 IMG_*.jpg
 IMG_*.jpeg
+Spotify*.jpeg
+Spotify*.jpg
+Spotify*.png
 
 # Claude
 .claude/
