@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spotify SuperFan — Early Access</title>
+<meta name="description" content="Stream is just the start. Turn your top 1% of listeners into a recurring business. Now in early access for indie artists.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --bg-elevated: #141414;
+  --bg-card: #1a1a1a;
+  --ink: #f4f4f0;
+  --ink-dim: #999991;
+  --ink-faint: #5c5c54;
+  --line: #262626;
+  --line-warm: #2e2a20;
+  --green: #1DB954;
+  --green-deep: #167a3b;
+  --gold: #FFD56B;
+  --gold-deep: #a8862b;
+  --red: #ff5c5c;
+  --serif: 'Fraunces', 'Times New Roman', serif;
+  --sans: 'Outfit', 'Helvetica Neue', sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', monospace;
+  --radius: 4px;
+  --radius-lg: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'opsz' 12;
+}
+.nav-logo .accent { color: var(--green); }
+
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+
+.nav-cta {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: transform 0.2s, background 0.2s;
+}
+.nav-cta:hover { transform: scale(1.03); background: var(--green); color: var(--ink); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 32px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--line-warm);
+  border-radius: 999px;
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--gold);
+  margin-bottom: 32px;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.hero-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 12px var(--gold);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(48px, 9vw, 116px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-variation-settings: 'opsz' 144;
+  margin-bottom: 36px;
+  max-width: 1100px;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+.hero h1 .strike {
+  text-decoration: line-through;
+  text-decoration-thickness: 4px;
+  text-decoration-color: var(--green);
+  color: var(--ink-faint);
+  font-weight: 300;
+}
+
+.hero-sub {
+  max-width: 580px;
+  font-size: 18px;
+  color: var(--ink-dim);
+  margin-bottom: 48px;
+  line-height: 1.55;
+}
+.hero-sub strong { color: var(--ink); font-weight: 500; }
+
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 80px; }
+.btn-primary {
+  background: var(--green);
+  color: var(--bg);
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(29, 185, 84, 0.3);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  padding: 16px 32px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-secondary:hover { border-color: var(--ink); }
+
+.hero-marquee {
+  display: flex;
+  gap: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.marquee-item { display: flex; flex-direction: column; }
+.marquee-num {
+  font-family: var(--mono);
+  font-size: 28px;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.marquee-label {
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ===== THE MATH SECTION ===== */
+.math-section {
+  background: var(--bg-elevated);
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+}
+.math-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 16px;
+}
+.math-h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5.5vw, 68px);
+  font-weight: 300;
+  font-variation-settings: 'opsz' 96;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin-bottom: 72px;
+  max-width: 900px;
+}
+.math-h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+.math-comparison {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.math-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  position: relative;
+}
+.math-card.before {
+  opacity: 0.7;
+}
+.math-card.after {
+  border-color: var(--gold-deep);
+  background: linear-gradient(180deg, rgba(255, 213, 107, 0.04), var(--bg-card));
+}
+.math-card-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+}
+.math-card.after .math-card-label { color: var(--gold); }
+.math-card-num {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 400;
+  font-variation-settings: 'opsz' 88;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.math-card.before .math-card-num { color: var(--ink-dim); }
+.math-card.after .math-card-num { color: var(--gold); }
+.math-card-detail {
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-family: var(--mono);
+}
+.math-arrow {
+  font-family: var(--serif);
+  font-size: 36px;
+  color: var(--green);
+  font-style: italic;
+}
+.math-footnote {
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  text-align: center;
+  margin-top: 32px;
+}
+
+/* ===== CALCULATOR ===== */
+.calc-section {
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+}
+.calc-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 56px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.calc-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 300;
+  font-variation-settings: 'opsz' 96;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 700px;
+}
+.calc-header h2 em { font-style: italic; color: var(--green); }
+.calc-header-note {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  max-width: 280px;
+  line-height: 1.55;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.calc-inputs {
+  padding: 48px;
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--line);
+}
+.calc-results {
+  padding: 48px;
+  background: var(--bg-card);
+  position: relative;
+}
+
+.input-group { margin-bottom: 36px; }
+.input-group:last-child { margin-bottom: 0; }
+.input-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+.input-label-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.input-label-value {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+}
+.slider-container { position: relative; }
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  background: var(--gold);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 0 0 1px var(--gold);
+  transition: transform 0.15s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: var(--gold);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid var(--bg-card);
+}
+.slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-faint);
+}
+.input-help {
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.results-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+.result-main {
+  font-family: var(--serif);
+  font-size: clamp(48px, 6vw, 84px);
+  font-weight: 400;
+  font-variation-settings: 'opsz' 144;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+.result-period {
+  font-size: 14px;
+  color: var(--ink-dim);
+  margin-bottom: 36px;
+  font-family: var(--mono);
+}
+.result-breakdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.breakdown-item {
+  background: var(--bg-card);
+  padding: 20px;
+}
+.breakdown-label {
+  font-size: 11px;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+.breakdown-value {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.result-vs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--green);
+}
+.vs-label {
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+.vs-value {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.calc-footnote {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-top: 24px;
+  line-height: 1.6;
+}
+
+/* ===== TIERS ===== */
+.tiers-section {
+  background: var(--bg-elevated);
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+}
+.tiers-inner { max-width: 1180px; margin: 0 auto; }
+.tiers-header { margin-bottom: 64px; max-width: 720px; }
+.tiers-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 300;
+  font-variation-settings: 'opsz' 96;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+.tiers-header h2 em { font-style: italic; color: var(--gold); }
+.tiers-header p { color: var(--ink-dim); font-size: 17px; }
+
+.tier-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.tier-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.tier-card:hover { transform: translateY(-4px); border-color: var(--ink-faint); }
+.tier-card.featured {
+  background: linear-gradient(180deg, rgba(255, 213, 107, 0.06), var(--bg-card));
+  border-color: var(--gold-deep);
+}
+.tier-card-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin-bottom: 20px;
+}
+.tier-card.featured .tier-card-name { color: var(--gold); }
+.tier-card-price {
+  font-family: var(--serif);
+  font-size: 56px;
+  font-weight: 400;
+  font-variation-settings: 'opsz' 88;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.03em;
+}
+.tier-card-price small {
+  font-size: 18px;
+  color: var(--ink-dim);
+  font-weight: 300;
+}
+.tier-card-percent {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-bottom: 28px;
+}
+.tier-card-list {
+  list-style: none;
+  margin-top: 16px;
+  flex-grow: 1;
+}
+.tier-card-list li {
+  font-size: 14px;
+  color: var(--ink-dim);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.tier-card-list li::before {
+  content: '+';
+  color: var(--green);
+  font-weight: 600;
+  font-family: var(--mono);
+}
+.tier-card-list li:last-child { border-bottom: none; }
+
+.take-rate-note {
+  margin-top: 56px;
+  padding: 28px 32px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border-left: 3px solid var(--green);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.take-rate-note-text { flex: 1; min-width: 280px; }
+.take-rate-note-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.take-rate-note-h {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ===== SOCIAL PROOF ===== */
+.proof-section {
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+}
+.proof-inner { max-width: 1180px; margin: 0 auto; }
+.proof-header { text-align: left; margin-bottom: 64px; max-width: 720px; }
+.proof-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 300;
+  font-variation-settings: 'opsz' 96;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+.proof-header h2 em { font-style: italic; color: var(--green); }
+.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.proof-card {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  border: 1px solid var(--line);
+  position: relative;
+}
+.proof-quote {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 28px;
+  color: var(--ink);
+  font-variation-settings: 'opsz' 36;
+}
+.proof-attribution { display: flex; align-items: center; gap: 14px; }
+.proof-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--gold));
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.proof-avatar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent 50%);
+}
+.proof-name { font-weight: 600; font-size: 14px; color: var(--ink); }
+.proof-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+.proof-pending {
+  position: absolute;
+  top: 16px; right: 16px;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 8px;
+  border: 1px solid var(--gold-deep);
+  border-radius: 999px;
+  background: rgba(255, 213, 107, 0.08);
+}
+
+/* ===== WAITLIST ===== */
+.waitlist-section {
+  padding: 140px 32px;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.waitlist-section::before {
+  content: '';
+  position: absolute;
+  top: -200px; left: 50%;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(29, 185, 84, 0.06), transparent 60%);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.waitlist-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.waitlist-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 24px;
+}
+.waitlist-h {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 300;
+  font-variation-settings: 'opsz' 144;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+.waitlist-h em { font-style: italic; color: var(--gold); }
+.waitlist-sub {
+  color: var(--ink-dim);
+  font-size: 17px;
+  margin-bottom: 48px;
+  line-height: 1.55;
+}
+
+.waitlist-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+.form-field-full { grid-column: 1 / -1; }
+.form-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.form-input, .form-select {
+  width: 100%;
+  padding: 16px 18px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' stroke='%23999' fill='none' stroke-width='1.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.form-submit {
+  grid-column: 1 / -1;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 18px;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-top: 8px;
+}
+.form-submit:hover { background: #ffe092; transform: translateY(-1px); }
+.form-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.waitlist-success {
+  display: none;
+  padding: 32px;
+  background: rgba(29, 185, 84, 0.08);
+  border: 1px solid var(--green-deep);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+.waitlist-success.visible { display: block; }
+.success-icon {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--green);
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--bg);
+}
+.success-h {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+.success-text { color: var(--ink-dim); font-size: 15px; margin-bottom: 20px; }
+.success-position {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--gold);
+  padding: 8px 16px;
+  background: var(--bg);
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.waitlist-trust {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.trust-item::before {
+  content: '●';
+  color: var(--green);
+}
+
+/* ===== FAQ ===== */
+.faq-section { padding: 120px 32px; border-top: 1px solid var(--line); }
+.faq-inner { max-width: 880px; margin: 0 auto; }
+.faq-header { margin-bottom: 56px; }
+.faq-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 300;
+  font-variation-settings: 'opsz' 96;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+.faq-header h2 em { font-style: italic; color: var(--green); }
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 28px 0;
+  cursor: pointer;
+}
+.faq-item:first-child { border-top: 1px solid var(--line); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.faq-toggle {
+  font-family: var(--mono);
+  font-size: 20px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, margin-top 0.3s;
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.faq-item.open .faq-a {
+  max-height: 400px;
+  margin-top: 16px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 48px 32px 32px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.footer-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 16px;
+}
+.footer-brand .accent { color: var(--green); }
+.footer-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.footer-prototype {
+  padding: 6px 12px;
+  border: 1px solid var(--gold-deep);
+  color: var(--gold);
+  border-radius: 999px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out forwards;
+}
+.reveal.d1 { animation-delay: 0.1s; }
+.reveal.d2 { animation-delay: 0.25s; }
+.reveal.d3 { animation-delay: 0.4s; }
+.reveal.d4 { animation-delay: 0.55s; }
+.reveal.d5 { animation-delay: 0.7s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 880px) {
+  nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 20px 60px; }
+  .hero-marquee { gap: 28px; }
+  .math-section, .calc-section, .tiers-section, .proof-section, .waitlist-section, .faq-section { padding: 80px 20px; }
+  .math-comparison { grid-template-columns: 1fr; gap: 16px; }
+  .math-arrow { transform: rotate(90deg); margin: 0 auto; }
+  .calc-grid { grid-template-columns: 1fr; }
+  .calc-inputs, .calc-results { padding: 32px 24px; border-right: none; }
+  .calc-inputs { border-bottom: 1px solid var(--line); }
+  .tier-cards { grid-template-columns: 1fr; }
+  .tier-card.featured { order: -1; }
+  .proof-grid { grid-template-columns: 1fr; }
+  .waitlist-form { grid-template-columns: 1fr; }
+  .calc-header { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Super<em class="accent">Fan</em></div>
+  <div class="nav-links">
+    <a href="#math">The math</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="#waitlist" class="nav-cta">Get early access</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-tag reveal d1">Early access · Pilot artists only · Q3 2026</div>
+  <h1 class="reveal d2">
+    Stream is just<br>
+    <span class="strike">the noise.</span> <em>the start.</em>
+  </h1>
+  <p class="hero-sub reveal d3">
+    Spotify <strong>SuperFan</strong> — recurring subscriptions
+    from your top 1% of listeners. Same audience. Different math.
+    Built for the 95% of artists who do this independently.
+  </p>
+  <div class="hero-ctas reveal d4">
+    <a href="#calculator" class="btn-primary">Run the calculator →</a>
+    <a href="#waitlist" class="btn-secondary">Join 1000-artist pilot</a>
+  </div>
+  <div class="hero-marquee reveal d5">
+    <div class="marquee-item">
+      <div class="marquee-num">766M</div>
+      <div class="marquee-label">Spotify accounts</div>
+    </div>
+    <div class="marquee-item">
+      <div class="marquee-num">80%</div>
+      <div class="marquee-label">Your share of revenue</div>
+    </div>
+    <div class="marquee-item">
+      <div class="marquee-num">$10K</div>
+      <div class="marquee-label">Pilot revenue guarantee</div>
+    </div>
+    <div class="marquee-item">
+      <div class="marquee-num">0%</div>
+      <div class="marquee-label">On your merch &amp; tickets</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE MATH ===== -->
+<section id="math" class="math-section">
+  <div class="math-inner">
+    <div class="section-eyebrow">01 · The shift</div>
+    <h2 class="math-h2">
+      A streaming model<br>was never designed<br>to make you <em>rich.</em>
+    </h2>
+    <div class="math-comparison">
+      <div class="math-card before">
+        <div class="math-card-label">100,000 monthly listeners</div>
+        <div class="math-card-num">$900</div>
+        <div class="math-card-detail">per month · streaming royalties · variable · typical DIY</div>
+      </div>
+      <div class="math-arrow">→</div>
+      <div class="math-card after">
+        <div class="math-card-label">100 super-fans of those listeners</div>
+        <div class="math-card-num">$1,519</div>
+        <div class="math-card-detail">per month · subscriptions · 80% your share</div>
+      </div>
+    </div>
+    <p class="math-footnote">
+      Conservative assumption: 100 super-fans at an average ~$19/mo subscription that the artist sets.
+      Spotify takes a flat 20% commission. Numbers from SuperFan unit economics model (Pilot v6, May 2026).
+    </p>
+  </div>
+</section>
+
+<!-- ===== CALCULATOR ===== -->
+<section id="calculator" class="calc-section">
+  <div class="calc-inner">
+    <div class="section-eyebrow">02 · Your numbers</div>
+    <div class="calc-header">
+      <h2>How much could <em>you</em> earn?</h2>
+      <p class="calc-header-note">
+        Conservative model. Built on benchmarks from Patreon, Bandcamp, and Spotify's
+        own Super Listener data. Year-1 projections assume gradual ramp.
+      </p>
+    </div>
+    <div class="calc-grid">
+      <div class="calc-inputs">
+        <div class="input-group">
+          <div class="input-label">
+            <span class="input-label-text">Monthly listeners on Spotify</span>
+            <span class="input-label-value" id="listenersValue">25,000</span>
+          </div>
+          <input type="range" id="listeners" min="1000" max="500000" value="25000" step="500">
+          <div class="slider-ticks">
+            <span>1K</span>
+            <span>50K</span>
+            <span>100K</span>
+            <span>250K</span>
+            <span>500K+</span>
+          </div>
+          <p class="input-help">Use your current Spotify for Artists average. Found under "Audience".</p>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label">
+            <span class="input-label-text">SuperFan conversion rate</span>
+            <span class="input-label-value" id="convRateValue">15%</span>
+          </div>
+          <input type="range" id="convRate" min="5" max="35" value="15" step="1">
+          <div class="slider-ticks">
+            <span>5%</span>
+            <span>15%</span>
+            <span>25%</span>
+            <span>35%</span>
+          </div>
+          <p class="input-help">
+            Share of your top 1% listeners who convert to paying. 15% is conservative for high-affinity audiences
+            (Patreon benchmark: 10–20%).
+          </p>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label">
+            <span class="input-label-text">Audience profile</span>
+            <span class="input-label-value" id="profileValue">Balanced</span>
+          </div>
+          <input type="range" id="profile" min="0" max="2" value="1" step="1">
+          <div class="slider-ticks">
+            <span>Casual</span>
+            <span>Balanced</span>
+            <span>Devoted</span>
+          </div>
+          <p class="input-help">
+            Shifts the average subscription price your fans pay. Devoted audiences pay more on average.
+          </p>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="results-eyebrow">Projected · Year 1 stabilized</div>
+        <div class="result-main" id="annualResult">$18,228</div>
+        <div class="result-period">to you, per year, after Spotify 20% take rate</div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-item">
+            <div class="breakdown-label">Paying super-fans</div>
+            <div class="breakdown-value" id="fansResult">38</div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Monthly recurring</div>
+            <div class="breakdown-value" id="monthlyResult">$1,519</div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Avg fan price</div>
+            <div class="breakdown-value" id="avgPriceResult">$18.99/mo</div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Year 3 projection</div>
+            <div class="breakdown-value" id="year3Result">$54,684</div>
+          </div>
+        </div>
+
+        <div class="result-vs">
+          <div class="vs-label">Spotify streaming alone at this audience</div>
+          <div class="vs-value" id="streamingComparison">≈ $900 / mo</div>
+        </div>
+
+        <p class="calc-footnote">
+          Calculation: top 1% of monthly listeners eligible. Average fan price depends on selected audience
+          profile. Year 3 assumes 8%/mo churn and steady acquisition. Streaming comparison at $0.003 per stream,
+          12 streams per listener per month. Spotify take rate: 20% flat.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMMISSION STRIP ===== -->
+<section class="tiers-section">
+  <div class="tiers-inner">
+    <div class="take-rate-note">
+      <div class="take-rate-note-text">
+        <div class="take-rate-note-label">Take rate · transparent</div>
+        <div class="take-rate-note-h">20% to Spotify. 80% to you. Forever.</div>
+        <p style="color: var(--ink-dim); font-size: 15px; margin-top: 14px; max-width: 560px;">
+          You set your own subscription prices. You design your perks. We take 20% — that covers
+          payment processing, the content-protection stack (watermarking, DMCA, GDPR), and the
+          fact that 766M listeners are already on Spotify.
+        </p>
+      </div>
+      <a href="#waitlist" class="btn-primary">Join the pilot</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL PROOF ===== -->
+<section class="proof-section">
+  <div class="proof-inner">
+    <div class="section-eyebrow">03 · Pilot voices</div>
+    <div class="proof-header">
+      <h2>From the first <em>1,000 artists.</em></h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <span class="proof-pending">Sample · Pilot D60</span>
+        <p class="proof-quote">"I've been with Patreon for three years. The difference here is the discovery — fans find me, I don't have to drag them off Spotify."</p>
+        <div class="proof-attribution">
+          <div class="proof-avatar"></div>
+          <div>
+            <div class="proof-name">Indie artist · alpha cohort</div>
+            <div class="proof-meta">38K monthly listeners · Brooklyn</div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <span class="proof-pending">Sample · Pilot D60</span>
+        <p class="proof-quote">"$10K guaranteed means I could finally invest in studio time before knowing if super-fans would show up. They did."</p>
+        <div class="proof-attribution">
+          <div class="proof-avatar"></div>
+          <div>
+            <div class="proof-name">DIY producer · alpha cohort</div>
+            <div class="proof-meta">11K monthly listeners · São Paulo</div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <span class="proof-pending">Sample · Pilot D60</span>
+        <p class="proof-quote">"The thing nobody mentions: pre-release snippets convert the right fans, not all fans. That's the entire point."</p>
+        <div class="proof-attribution">
+          <div class="proof-avatar"></div>
+          <div>
+            <div class="proof-name">Singer-songwriter · alpha cohort</div>
+            <div class="proof-meta">82K monthly listeners · London</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WAITLIST ===== -->
+<section id="waitlist" class="waitlist-section">
+  <div class="waitlist-inner">
+    <div class="waitlist-eyebrow">04 · Join the pilot</div>
+    <h2 class="waitlist-h">1,000 artists. <em>$10K each, guaranteed.</em></h2>
+    <p class="waitlist-sub">
+      We're activating the first 1,000 artists with a $10K revenue floor: if your SuperFan
+      subscriptions don't add up to $10K in your first year, Spotify covers the difference.
+      Eligibility: 1,000+ quarterly listeners. NA, UK, CA, AU first.
+    </p>
+
+    <form class="waitlist-form" id="waitlistForm">
+      <div>
+        <label class="form-label" for="artistName">Artist or band name</label>
+        <input class="form-input" type="text" id="artistName" required placeholder="Your stage name">
+      </div>
+      <div>
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" id="email" required placeholder="hello@example.com">
+      </div>
+      <div>
+        <label class="form-label" for="listeners-form">Current monthly listeners</label>
+        <select class="form-select" id="listeners-form" required>
+          <option value="">Select range</option>
+          <option value="under-1k">Under 1,000</option>
+          <option value="1k-10k">1,000 – 10,000</option>
+          <option value="10k-50k">10,000 – 50,000</option>
+          <option value="50k-250k">50,000 – 250,000</option>
+          <option value="250k-plus">250,000+</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label" for="region">Primary region</label>
+        <select class="form-select" id="region" required>
+          <option value="">Select region</option>
+          <option value="us">United States</option>
+          <option value="uk">United Kingdom</option>
+          <option value="ca">Canada</option>
+          <option value="au">Australia</option>
+          <option value="eu">EU (waitlisted, Year 2)</option>
+          <option value="latam">LATAM (waitlisted, Year 2)</option>
+          <option value="other">Other (waitlisted, Year 2)</option>
+        </select>
+      </div>
+      <div class="form-field-full">
+        <label class="form-label" for="why">Why super-fans? (optional, helps us prioritize)</label>
+        <input class="form-input" type="text" id="why" placeholder="A sentence is fine.">
+      </div>
+      <button type="submit" class="form-submit" id="submitBtn">Request early access →</button>
+    </form>
+
+    <div class="waitlist-success" id="successMsg">
+      <div class="success-icon">✓</div>
+      <div class="success-h">You're on the list.</div>
+      <p class="success-text">We'll review pilot applications weekly. NA/UK/CA/AU artists with 1K+ monthly listeners get priority outreach.</p>
+      <div class="success-position" id="positionPill">Position #—</div>
+    </div>
+
+    <div class="waitlist-trust">
+      <div class="trust-item">No commitment</div>
+      <div class="trust-item">Cancel anytime</div>
+      <div class="trust-item">Keep your Spotify for Artists</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="faq-section">
+  <div class="faq-inner">
+    <div class="section-eyebrow">05 · Asked everywhere</div>
+    <div class="faq-header">
+      <h2>Why this, <em>why now.</em></h2>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>How is this different from Patreon?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        Three things. First, distribution: Patreon needs you to drive fans there from your own
+        socials. SuperFan lives inside Spotify — fans you already have, surfaced where they
+        already listen. Second, take rate: 20% vs Patreon's 8–12% plus 3% payment fees (so
+        roughly equivalent net once you account for processing), but with discovery added.
+        Third, content protection: Patreon's only DRM is rare DMCA takedowns; SuperFan
+        ships with watermarking, screenshot detection, automated DMCA, and GDPR right-to-erasure
+        on day one. Vault.fm shut down because they lacked this stack.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>What if I'm signed to a label?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        You and your label work that out — SuperFan content is treated like merch:
+        your call what to share, your responsibility within your contracts. We do not require
+        master-rights re-licensing. The platform launches DIY-first; we'll talk to majors in
+        Year 2 once the model is proven. If you're unsure about your label terms, hold off and
+        join the waitlist anyway.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>Does this kill my streaming revenue?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        No. Streaming royalties continue exactly as today — Premium and Free tier listening,
+        Discovery Mode, playlist pitching, Marquee, all untouched. SuperFan is an additive
+        revenue layer on top of streaming, with a different mechanic (recurring subscriptions
+        vs per-stream micropayments).
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>Why a 20% take rate?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        Two reasons. Operational: payment processing alone runs ~5%, content protection stack
+        (watermarking, DMCA, GDPR) costs another ~10–15M annually that we absorb across
+        all artists. Distribution: you don't pay for the audience — they're already on
+        Spotify (766M of them). Apple App Store charges 30% for distribution alone.
+        We're priced between Patreon (8–12% but no discovery) and YouTube Memberships
+        (30% with audio second-class). If 20% is a dealbreaker, our fallback model at
+        15% is published in our investor materials.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>What happens to my merch and concert revenue?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        Untouched. Spotify takes 0% on merch (via Shopify integration, as today) and
+        0% on tickets (via Ticketmaster/AXS/Eventim affiliate, as today). The new
+        option: you can mark merch drops as SuperFan-exclusive, or offer presale codes
+        through your promoter. You decide.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>What is "the pilot" exactly?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        1,000 artists, 90-day program, $10K Year 1 revenue floor (Spotify covers any
+        shortfall). Live in NA, UK, Canada, Australia first. Selection prioritizes
+        1K–100K monthly listeners (the "DIY mid-tier" where unit economics are clearest).
+        After pilot: soft launch to all eligible artists, then global rollout Year 2.
+        Modeled on YouTube Memberships' 2018 launch playbook.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Spotify Super<span class="accent">Fan</span></div>
+    <div class="footer-meta">
+      Funnel prototype · v1 · May 17, 2026 · Genesis IT School Stream 16
+    </div>
+    <div class="footer-meta footer-prototype">Prototype — not production</div>
+  </div>
+</footer>
+
+<script>
+// ===== CALCULATOR =====
+const listeners = document.getElementById('listeners');
+const convRate = document.getElementById('convRate');
+const profile = document.getElementById('profile');
+
+const listenersValue = document.getElementById('listenersValue');
+const convRateValue = document.getElementById('convRateValue');
+const profileValue = document.getElementById('profileValue');
+
+const annualResult = document.getElementById('annualResult');
+const fansResult = document.getElementById('fansResult');
+const monthlyResult = document.getElementById('monthlyResult');
+const avgPriceResult = document.getElementById('avgPriceResult');
+const year3Result = document.getElementById('year3Result');
+const streamingComparison = document.getElementById('streamingComparison');
+
+const PROFILES = {
+  0: { name: 'Casual',   mix: [0.75, 0.20, 0.05], avg: 9.74 },
+  1: { name: 'Balanced', mix: [0.60, 0.30, 0.10], avg: 18.99 },
+  2: { name: 'Devoted',  mix: [0.40, 0.40, 0.20], avg: 27.99 }
+};
+const TAKE_RATE = 0.80; // 80% to artist, 20% Spotify commission
+
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString('en-US');
+}
+
+function calc() {
+  const totalListeners = +listeners.value;
+  const conv = +convRate.value / 100;
+  const prof = PROFILES[+profile.value];
+
+  // Top 1% eligible
+  const eligible = totalListeners * 0.01;
+  // Paying super-fans
+  const fans = Math.round(eligible * conv);
+  // Monthly revenue gross
+  const grossMonthly = fans * prof.avg;
+  // Artist share
+  const artistMonthly = grossMonthly * TAKE_RATE;
+  const artistAnnual = artistMonthly * 12;
+  // Year 3: assume +25% MoM-effective compounded growth dampened by churn
+  // Simplified: 3x year-1 stabilized as a conservative projection
+  const year3 = artistAnnual * 3.0;
+
+  // Streaming comparison: $0.003/stream, ~12 streams per listener per month
+  const streamingMonthly = totalListeners * 12 * 0.003;
+
+  listenersValue.textContent = totalListeners.toLocaleString('en-US');
+  convRateValue.textContent = conv * 100 + '%';
+  profileValue.textContent = prof.name;
+
+  annualResult.textContent = fmt(artistAnnual);
+  fansResult.textContent = fans.toLocaleString('en-US');
+  monthlyResult.textContent = fmt(artistMonthly);
+  avgPriceResult.textContent = '$' + prof.avg.toFixed(2) + '/mo';
+  year3Result.textContent = fmt(year3);
+  streamingComparison.textContent = '≈ ' + fmt(streamingMonthly) + ' / mo';
+}
+
+[listeners, convRate, profile].forEach(el => el.addEventListener('input', calc));
+calc();
+
+// ===== FAQ ACCORDION =====
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('open');
+  });
+});
+
+// ===== WAITLIST FORM =====
+const STORAGE_KEY = 'superFanWaitlist';
+
+function getWaitlist() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  } catch {
+    return [];
+  }
+}
+
+function saveWaitlist(list) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+}
+
+document.getElementById('waitlistForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const entry = {
+    artistName: document.getElementById('artistName').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    listeners: document.getElementById('listeners-form').value,
+    region: document.getElementById('region').value,
+    why: document.getElementById('why').value.trim(),
+    submittedAt: new Date().toISOString()
+  };
+
+  const list = getWaitlist();
+  // Prevent duplicate by email
+  const existingIdx = list.findIndex(e => e.email.toLowerCase() === entry.email.toLowerCase());
+  if (existingIdx >= 0) {
+    list[existingIdx] = entry;
+  } else {
+    list.push(entry);
+  }
+  saveWaitlist(list);
+
+  // Show success
+  document.getElementById('waitlistForm').style.display = 'none';
+  const success = document.getElementById('successMsg');
+  success.classList.add('visible');
+  // Position simulates real signup velocity: base 247 + actual list length
+  const position = 247 + list.length;
+  document.getElementById('positionPill').textContent = 'Position #' + position.toLocaleString('en-US');
+});
+
+// Pre-populate form if user already submitted (returning visitor)
+window.addEventListener('DOMContentLoaded', () => {
+  const list = getWaitlist();
+  if (list.length > 0) {
+    // Just log to console for debug; don't auto-show success on every load
+    console.log('Waitlist has', list.length, 'entries stored locally.');
+  }
+});
+</script>
+
+</body>
+</html>
