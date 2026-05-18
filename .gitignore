@@ -15,6 +15,12 @@ IMG_*.jpeg
 Spotify*.jpeg
 Spotify*.jpg
 Spotify*.png
+Снимок*.png
+Снимок*.jpg
+Снимок*.jpeg
+
+# Wrapped funnel — separate repo, tracked independently
+wrapped/
 
 # Claude
 .claude/
