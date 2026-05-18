@@ -7,27 +7,31 @@
 <meta name="description" content="Stream is just the start. Turn your top 1% of listeners into a recurring business. Now in early access for indie artists.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0a0a;
-  --bg-elevated: #141414;
-  --bg-card: #1a1a1a;
-  --ink: #f4f4f0;
-  --ink-dim: #999991;
-  --ink-faint: #5c5c54;
-  --line: #262626;
-  --line-warm: #2e2a20;
-  --green: #1DB954;
-  --green-deep: #167a3b;
-  --gold: #FFD56B;
-  --gold-deep: #a8862b;
-  --red: #ff5c5c;
-  --serif: 'Fraunces', 'Times New Roman', serif;
-  --sans: 'Outfit', 'Helvetica Neue', sans-serif;
-  --mono: 'JetBrains Mono', 'SF Mono', monospace;
+  /* Spotify palette */
+  --bg: #000000;
+  --bg-elevated: #121212;
+  --bg-card: #181818;
+  --bg-hover: #1f1f1f;
+  --ink: #ffffff;
+  --ink-dim: #a7a7a7;
+  --ink-faint: #6a6a6a;
+  --line: #282828;
+  --line-warm: #282828;
+  --green: #1ED760;       /* bright Spotify green for CTAs/accents */
+  --green-deep: #1DB954;  /* classic Spotify green for hover/strokes */
+  --green-press: #169c46;
+  /* legacy aliases kept so existing var(--gold) usages map to green */
+  --gold: #1ED760;
+  --gold-deep: #1DB954;
+  --red: #f15e6c;
+  --serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --mono: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
   --radius: 4px;
-  --radius-lg: 12px;
+  --radius-lg: 8px;
 }
 
 * {
@@ -82,14 +86,16 @@ nav {
 
 .nav-cta {
   background: var(--ink);
-  color: var(--bg);
-  padding: 10px 20px;
+  color: #000;
+  padding: 10px 22px;
   border-radius: 999px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 13px;
-  transition: transform 0.2s, background 0.2s;
+  letter-spacing: -.1px;
+  transition: transform 0.15s ease, background 0.15s ease;
+  text-decoration: none;
 }
-.nav-cta:hover { transform: scale(1.03); background: var(--green); color: var(--ink); }
+.nav-cta:hover { transform: scale(1.04); background: #f0f0f0; }
 
 /* ===== HERO ===== */
 .hero {
@@ -135,7 +141,7 @@ nav {
 .hero h1 {
   font-family: var(--serif);
   font-size: clamp(48px, 9vw, 116px);
-  font-weight: 300;
+  font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.04em;
   font-variation-settings: 'opsz' 144;
@@ -143,7 +149,7 @@ nav {
   max-width: 1100px;
 }
 .hero h1 em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   color: var(--gold);
 }
@@ -152,7 +158,7 @@ nav {
   text-decoration-thickness: 4px;
   text-decoration-color: var(--green);
   color: var(--ink-faint);
-  font-weight: 300;
+  font-weight: 800;
 }
 
 .hero-sub {
@@ -167,41 +173,43 @@ nav {
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 80px; }
 .btn-primary {
   background: var(--green);
-  color: var(--bg);
-  padding: 16px 32px;
+  color: #000;
+  padding: 14px 32px;
   border-radius: 999px;
   font-family: var(--sans);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 15px;
+  letter-spacing: -.1px;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.15s ease, background 0.15s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(29, 185, 84, 0.3);
+  transform: scale(1.04);
+  background: #1FDF64;
 }
 .btn-secondary {
   background: transparent;
   color: var(--ink);
-  padding: 16px 32px;
+  padding: 14px 32px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--ink-faint);
   font-family: var(--sans);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 15px;
+  letter-spacing: -.1px;
   cursor: pointer;
   text-decoration: none;
-  transition: border-color 0.2s, color 0.2s;
+  transition: transform 0.15s ease, border-color 0.15s ease;
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
-.btn-secondary:hover { border-color: var(--ink); }
+.btn-secondary:hover { transform: scale(1.04); border-color: var(--ink); }
 
 .hero-marquee {
   display: flex;
@@ -246,14 +254,14 @@ nav {
 .math-h2 {
   font-family: var(--serif);
   font-size: clamp(36px, 5.5vw, 68px);
-  font-weight: 300;
+  font-weight: 800;
   font-variation-settings: 'opsz' 96;
   line-height: 1.02;
   letter-spacing: -0.03em;
   margin-bottom: 72px;
   max-width: 900px;
 }
-.math-h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.math-h2 em { font-style: normal; color: var(--gold); font-weight: 400; }
 
 .math-comparison {
   display: grid;
@@ -305,7 +313,7 @@ nav {
   font-family: var(--serif);
   font-size: 36px;
   color: var(--green);
-  font-style: italic;
+  font-style: normal;
 }
 .math-footnote {
   font-size: 13px;
@@ -335,13 +343,13 @@ nav {
 .calc-header h2 {
   font-family: var(--serif);
   font-size: clamp(36px, 5vw, 60px);
-  font-weight: 300;
+  font-weight: 800;
   font-variation-settings: 'opsz' 96;
   line-height: 1.04;
   letter-spacing: -0.03em;
   max-width: 700px;
 }
-.calc-header h2 em { font-style: italic; color: var(--green); }
+.calc-header h2 em { font-style: normal; color: var(--green); }
 .calc-header-note {
   font-family: var(--mono);
   font-size: 12px;
@@ -522,13 +530,13 @@ input[type="range"]::-moz-range-thumb {
 .tiers-header h2 {
   font-family: var(--serif);
   font-size: clamp(36px, 5vw, 60px);
-  font-weight: 300;
+  font-weight: 800;
   font-variation-settings: 'opsz' 96;
   line-height: 1.04;
   letter-spacing: -0.03em;
   margin-bottom: 20px;
 }
-.tiers-header h2 em { font-style: italic; color: var(--gold); }
+.tiers-header h2 em { font-style: normal; color: var(--gold); }
 .tiers-header p { color: var(--ink-dim); font-size: 17px; }
 
 .tier-cards {
@@ -545,7 +553,7 @@ input[type="range"]::-moz-range-thumb {
   flex-direction: column;
   transition: transform 0.2s, border-color 0.2s;
 }
-.tier-card:hover { transform: translateY(-4px); border-color: var(--ink-faint); }
+.tier-card:hover { background: var(--bg-hover); border-color: var(--ink-faint); }
 .tier-card.featured {
   background: linear-gradient(180deg, rgba(255, 213, 107, 0.06), var(--bg-card));
   border-color: var(--gold-deep);
@@ -571,7 +579,7 @@ input[type="range"]::-moz-range-thumb {
 .tier-card-price small {
   font-size: 18px;
   color: var(--ink-dim);
-  font-weight: 300;
+  font-weight: 500;
 }
 .tier-card-percent {
   font-family: var(--mono);
@@ -639,13 +647,13 @@ input[type="range"]::-moz-range-thumb {
 .proof-header h2 {
   font-family: var(--serif);
   font-size: clamp(36px, 5vw, 60px);
-  font-weight: 300;
+  font-weight: 800;
   font-variation-settings: 'opsz' 96;
   line-height: 1.04;
   letter-spacing: -0.03em;
   margin-bottom: 20px;
 }
-.proof-header h2 em { font-style: italic; color: var(--green); }
+.proof-header h2 em { font-style: normal; color: var(--green); }
 .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .proof-card {
   background: var(--bg-elevated);
@@ -657,8 +665,8 @@ input[type="range"]::-moz-range-thumb {
 .proof-quote {
   font-family: var(--serif);
   font-size: 20px;
-  font-weight: 300;
-  font-style: italic;
+  font-weight: 800;
+  font-style: normal;
   line-height: 1.4;
   margin-bottom: 28px;
   color: var(--ink);
@@ -736,13 +744,13 @@ input[type="range"]::-moz-range-thumb {
 .waitlist-h {
   font-family: var(--serif);
   font-size: clamp(36px, 5vw, 64px);
-  font-weight: 300;
+  font-weight: 800;
   font-variation-settings: 'opsz' 144;
   line-height: 1.02;
   letter-spacing: -0.03em;
   margin-bottom: 24px;
 }
-.waitlist-h em { font-style: italic; color: var(--gold); }
+.waitlist-h em { font-style: normal; color: var(--gold); }
 .waitlist-sub {
   color: var(--ink-dim);
   font-size: 17px;
@@ -791,19 +799,20 @@ input[type="range"]::-moz-range-thumb {
 }
 .form-submit {
   grid-column: 1 / -1;
-  background: var(--gold);
-  color: var(--bg);
-  padding: 18px;
+  background: var(--green);
+  color: #000;
+  padding: 16px;
   border: none;
   border-radius: 999px;
   font-family: var(--sans);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 15px;
+  letter-spacing: -.1px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.15s ease, transform 0.15s ease;
   margin-top: 8px;
 }
-.form-submit:hover { background: #ffe092; transform: translateY(-1px); }
+.form-submit:hover { background: #1FDF64; transform: scale(1.02); }
 .form-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
 .waitlist-success {
@@ -872,12 +881,12 @@ input[type="range"]::-moz-range-thumb {
 .faq-header h2 {
   font-family: var(--serif);
   font-size: clamp(36px, 5vw, 60px);
-  font-weight: 300;
+  font-weight: 800;
   font-variation-settings: 'opsz' 96;
   line-height: 1.04;
   letter-spacing: -0.03em;
 }
-.faq-header h2 em { font-style: italic; color: var(--green); }
+.faq-header h2 em { font-style: normal; color: var(--green); }
 
 .faq-item {
   border-bottom: 1px solid var(--line);
