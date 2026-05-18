@@ -440,6 +440,87 @@ input[type="range"]::-moz-range-thumb {
   line-height: 1.5;
 }
 
+/* ===== TIER STRIP (replaces price slider) ===== */
+.tier-strip {
+  margin-bottom: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.tier-strip-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.tier-strip-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.tier-mini {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.tier-mini.featured {
+  border-color: var(--green-deep);
+  background: linear-gradient(180deg, rgba(30,215,96,.08), var(--bg-card));
+}
+.tier-mini-price {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  line-height: 1;
+}
+.tier-mini-price small {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-dim);
+  margin-left: 2px;
+}
+.tier-mini.featured .tier-mini-price { color: var(--green); }
+.tier-mini-share {
+  font-size: 10px;
+  color: var(--ink-faint);
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+.tier-strip-note {
+  font-size: 12px;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+.tier-strip-note b { color: var(--ink); font-weight: 700; }
+
+/* ===== ASSUMPTION STRIP (Super Listeners + conversion, fixed) ===== */
+.assumption-strip {
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.assumption-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 14px;
+  color: var(--ink-dim);
+}
+.assumption-row + .assumption-row { border-top: 1px solid var(--line); }
+.assumption-val {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 15px;
+}
+
 .results-eyebrow {
   font-family: var(--mono);
   font-size: 11px;
@@ -1052,19 +1133,20 @@ footer {
     <div class="math-comparison">
       <div class="math-card before">
         <div class="math-card-label">100,000 monthly listeners</div>
-        <div class="math-card-num">$900</div>
-        <div class="math-card-detail">per month · streaming royalties · variable · typical DIY</div>
+        <div class="math-card-num">$3,600</div>
+        <div class="math-card-detail">per month · streaming royalties · industry avg, gross</div>
       </div>
-      <div class="math-arrow">→</div>
+      <div class="math-arrow">+</div>
       <div class="math-card after">
-        <div class="math-card-label">100 super-fans of those listeners</div>
-        <div class="math-card-num">$1,519</div>
+        <div class="math-card-label">200 SuperFans (top 2% × 10% conv.)</div>
+        <div class="math-card-num">+$3,038</div>
         <div class="math-card-detail">per month · subscriptions · 80% your share</div>
       </div>
     </div>
     <p class="math-footnote">
-      Conservative assumption: 100 super-fans at an average ~$19/mo subscription that the artist sets.
-      Spotify takes a flat 20% commission. Numbers from SuperFan unit economics model (Pilot v6, May 2026).
+      Same audience, ~2× the monthly income. Streaming: 100K × 12 streams × $0.003 = $3,600 gross.
+      SuperFan: 2% Super Listeners (S4A) × 10% conversion (Patreon-like) × $18.99 weighted avg sub × 80% artist share.
+      Numbers from SuperFan unit economics (Pilot v6, May 2026).
     </p>
   </div>
 </section>
@@ -1085,87 +1167,89 @@ footer {
         <div class="input-group">
           <div class="input-label">
             <span class="input-label-text">Monthly listeners on Spotify</span>
-            <span class="input-label-value" id="listenersValue">25,000</span>
+            <span class="input-label-value" id="listenersValue">100,000</span>
           </div>
-          <input type="range" id="listeners" min="1000" max="500000" value="25000" step="500">
+          <input type="range" id="listeners" min="50000" max="500000" value="100000" step="5000">
           <div class="slider-ticks">
-            <span>1K</span>
             <span>50K</span>
             <span>100K</span>
             <span>250K</span>
             <span>500K+</span>
           </div>
-          <p class="input-help">Use your current Spotify for Artists average. Found under "Audience".</p>
+          <p class="input-help">From Spotify for Artists → Audience. Pilot eligibility starts at 50K monthly listeners.</p>
         </div>
 
-        <div class="input-group">
-          <div class="input-label">
-            <span class="input-label-text">SuperFan conversion rate</span>
-            <span class="input-label-value" id="convRateValue">15%</span>
+        <div class="tier-strip">
+          <div class="tier-strip-label">SuperFan tiers · you set, fans choose</div>
+          <div class="tier-strip-cards">
+            <div class="tier-mini">
+              <div class="tier-mini-price">$4.99<small>/mo</small></div>
+              <div class="tier-mini-share">60% of fans</div>
+            </div>
+            <div class="tier-mini featured">
+              <div class="tier-mini-price">$19.99<small>/mo</small></div>
+              <div class="tier-mini-share">30% of fans</div>
+            </div>
+            <div class="tier-mini">
+              <div class="tier-mini-price">$99.99<small>/mo</small></div>
+              <div class="tier-mini-share">10% of fans</div>
+            </div>
           </div>
-          <input type="range" id="convRate" min="5" max="35" value="15" step="1">
-          <div class="slider-ticks">
-            <span>5%</span>
-            <span>15%</span>
-            <span>25%</span>
-            <span>35%</span>
+          <div class="tier-strip-note">
+            Weighted avg <b>$18.99/mo</b> · Spotify takes 20% · you keep 80%
           </div>
-          <p class="input-help">
-            Share of your top 1% listeners who convert to paying. 15% is conservative for high-affinity audiences
-            (Patreon benchmark: 10–20%).
-          </p>
         </div>
 
-        <div class="input-group">
-          <div class="input-label">
-            <span class="input-label-text">Audience profile</span>
-            <span class="input-label-value" id="profileValue">Balanced</span>
+        <div class="assumption-strip">
+          <div class="assumption-row">
+            <span>Super Listeners (top 2% of MAL)</span>
+            <span class="assumption-val" id="superListenersResult">2,000</span>
           </div>
-          <input type="range" id="profile" min="0" max="2" value="1" step="1">
-          <div class="slider-ticks">
-            <span>Casual</span>
-            <span>Balanced</span>
-            <span>Devoted</span>
+          <div class="assumption-row">
+            <span>Conversion to paying SuperFan</span>
+            <span class="assumption-val">10%</span>
           </div>
           <p class="input-help">
-            Shifts the average subscription price your fans pay. Devoted audiences pay more on average.
+            Based on Spotify Super Listeners segment (S4A 2025) + Patreon conversion benchmark.
+            Fixed model — sliders removed so the projection stays comparable across artists.
           </p>
         </div>
       </div>
 
       <div class="calc-results">
-        <div class="results-eyebrow">Projected · Year 1 stabilized</div>
-        <div class="result-main" id="annualResult">$18,228</div>
-        <div class="result-period">to you, per year, after Spotify 20% take rate</div>
+        <div class="results-eyebrow">Projected · Year 1</div>
+        <div class="result-main" id="annualResult">$27,400</div>
+        <div class="result-period">to you, year 1, after Spotify's 20% take rate</div>
 
         <div class="result-breakdown">
           <div class="breakdown-item">
-            <div class="breakdown-label">Paying super-fans</div>
-            <div class="breakdown-value" id="fansResult">38</div>
+            <div class="breakdown-label">Paying SuperFans</div>
+            <div class="breakdown-value" id="fansResult">200</div>
           </div>
           <div class="breakdown-item">
             <div class="breakdown-label">Monthly recurring</div>
-            <div class="breakdown-value" id="monthlyResult">$1,519</div>
+            <div class="breakdown-value" id="monthlyResult">$3,038</div>
           </div>
           <div class="breakdown-item">
             <div class="breakdown-label">Avg fan price</div>
-            <div class="breakdown-value" id="avgPriceResult">$18.99/mo</div>
+            <div class="breakdown-value">$18.99/mo</div>
           </div>
           <div class="breakdown-item">
             <div class="breakdown-label">Year 3 projection</div>
-            <div class="breakdown-value" id="year3Result">$54,684</div>
+            <div class="breakdown-value" id="year3Result">$82,200</div>
           </div>
         </div>
 
         <div class="result-vs">
-          <div class="vs-label">Spotify streaming alone at this audience</div>
-          <div class="vs-value" id="streamingComparison">≈ $900 / mo</div>
+          <div class="vs-label">Streaming royalties at this audience</div>
+          <div class="vs-value" id="streamingComparison">≈ $3,600 / mo gross</div>
         </div>
 
         <p class="calc-footnote">
-          Calculation: top 1% of monthly listeners eligible. Average fan price depends on selected audience
-          profile. Year 3 assumes 8%/mo churn and steady acquisition. Streaming comparison at $0.003 per stream,
-          12 streams per listener per month. Spotify take rate: 20% flat.
+          Funnel: monthly listeners → 2% Super Listeners (S4A) → 10% conversion (Patreon-like) → paying SuperFans.
+          Y1 per acquired sub ≈ $137 ($18.99 weighted avg × 80% artist share × ~9 months active with 8%/mo churn).
+          Y3 ≈ 3× Y1 assuming accumulated cohort and modest audience growth. Streaming comparison uses
+          $0.003/stream × 12 streams per listener per month, gross to rights holders.
         </p>
       </div>
     </div>
@@ -1403,66 +1487,52 @@ footer {
 
 <script>
 // ===== CALCULATOR =====
-const listeners = document.getElementById('listeners');
-const convRate = document.getElementById('convRate');
-const profile = document.getElementById('profile');
+// All constants sourced from marketing-strategy-final.md §4.2 + §10.
+const SUPER_LISTENER_RATE = 0.02;  // 2% of MAL (Spotify S4A definition)
+const CONVERSION_RATE     = 0.10;  // 10% — Patreon-like base benchmark
+const AVG_SUB_PRICE       = 18.99; // weighted avg of 60/30/10 across $4.99/$19.99/$99.99
+const ARTIST_SHARE        = 0.80;  // 80/20 split (Spotify takes 20%)
+const Y1_PER_ACQUIRED_SUB = 137;   // $18.99 × 80% × ~9 months avg active (8%/mo churn)
+const Y3_MULTIPLIER       = 3.0;   // accumulated cohort + modest audience growth
+const STREAMS_PER_LISTENER_MONTH = 12;
+const PAY_PER_STREAM      = 0.003; // industry avg rights-holder payout
 
-const listenersValue = document.getElementById('listenersValue');
-const convRateValue = document.getElementById('convRateValue');
-const profileValue = document.getElementById('profileValue');
-
-const annualResult = document.getElementById('annualResult');
-const fansResult = document.getElementById('fansResult');
-const monthlyResult = document.getElementById('monthlyResult');
-const avgPriceResult = document.getElementById('avgPriceResult');
-const year3Result = document.getElementById('year3Result');
-const streamingComparison = document.getElementById('streamingComparison');
-
-const PROFILES = {
-  0: { name: 'Casual',   mix: [0.75, 0.20, 0.05], avg: 9.74 },
-  1: { name: 'Balanced', mix: [0.60, 0.30, 0.10], avg: 18.99 },
-  2: { name: 'Devoted',  mix: [0.40, 0.40, 0.20], avg: 27.99 }
-};
-const TAKE_RATE = 0.80; // 80% to artist, 20% Spotify commission
+const listeners                = document.getElementById('listeners');
+const listenersValue           = document.getElementById('listenersValue');
+const superListenersResult     = document.getElementById('superListenersResult');
+const annualResult             = document.getElementById('annualResult');
+const fansResult               = document.getElementById('fansResult');
+const monthlyResult            = document.getElementById('monthlyResult');
+const year3Result              = document.getElementById('year3Result');
+const streamingComparison      = document.getElementById('streamingComparison');
 
 function fmt(n) {
   return '$' + Math.round(n).toLocaleString('en-US');
 }
+function fmtInt(n) {
+  return Math.round(n).toLocaleString('en-US');
+}
 
 function calc() {
   const totalListeners = +listeners.value;
-  const conv = +convRate.value / 100;
-  const prof = PROFILES[+profile.value];
+  const superListeners = totalListeners * SUPER_LISTENER_RATE;
+  const fans           = Math.round(superListeners * CONVERSION_RATE);
+  const monthlyGross   = fans * AVG_SUB_PRICE;
+  const monthlyToArt   = monthlyGross * ARTIST_SHARE;
+  const yearOne        = fans * Y1_PER_ACQUIRED_SUB;
+  const yearThree      = yearOne * Y3_MULTIPLIER;
+  const streamingGross = totalListeners * STREAMS_PER_LISTENER_MONTH * PAY_PER_STREAM;
 
-  // Top 1% eligible
-  const eligible = totalListeners * 0.01;
-  // Paying super-fans
-  const fans = Math.round(eligible * conv);
-  // Monthly revenue gross
-  const grossMonthly = fans * prof.avg;
-  // Artist share
-  const artistMonthly = grossMonthly * TAKE_RATE;
-  const artistAnnual = artistMonthly * 12;
-  // Year 3: assume +25% MoM-effective compounded growth dampened by churn
-  // Simplified: 3x year-1 stabilized as a conservative projection
-  const year3 = artistAnnual * 3.0;
-
-  // Streaming comparison: $0.003/stream, ~12 streams per listener per month
-  const streamingMonthly = totalListeners * 12 * 0.003;
-
-  listenersValue.textContent = totalListeners.toLocaleString('en-US');
-  convRateValue.textContent = conv * 100 + '%';
-  profileValue.textContent = prof.name;
-
-  annualResult.textContent = fmt(artistAnnual);
-  fansResult.textContent = fans.toLocaleString('en-US');
-  monthlyResult.textContent = fmt(artistMonthly);
-  avgPriceResult.textContent = '$' + prof.avg.toFixed(2) + '/mo';
-  year3Result.textContent = fmt(year3);
-  streamingComparison.textContent = '≈ ' + fmt(streamingMonthly) + ' / mo';
+  listenersValue.textContent       = totalListeners.toLocaleString('en-US');
+  superListenersResult.textContent = fmtInt(superListeners);
+  annualResult.textContent         = fmt(yearOne);
+  fansResult.textContent           = fans.toLocaleString('en-US');
+  monthlyResult.textContent        = fmt(monthlyToArt);
+  year3Result.textContent          = fmt(yearThree);
+  streamingComparison.textContent  = '≈ ' + fmt(streamingGross) + ' / mo gross';
 }
 
-[listeners, convRate, profile].forEach(el => el.addEventListener('input', calc));
+listeners.addEventListener('input', calc);
 calc();
 
 // ===== FAQ ACCORDION =====
