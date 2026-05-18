@@ -1223,7 +1223,7 @@ footer {
 
       <div class="calc-results">
         <div class="results-eyebrow">Approximate income</div>
-        <div class="result-main" id="annualResult">$28,800</div>
+        <div class="result-main" id="annualResult">$38,381</div>
 
         <div class="result-breakdown">
           <div class="breakdown-item">
@@ -1240,7 +1240,7 @@ footer {
           </div>
           <div class="breakdown-item">
             <div class="breakdown-label">Year 3 projection</div>
-            <div class="breakdown-value" id="year3Result">$86,400</div>
+            <div class="breakdown-value" id="year3Result">$115,142</div>
           </div>
         </div>
 
@@ -1319,9 +1319,8 @@ footer {
     <div class="waitlist-eyebrow">04 · Join the pilot</div>
     <h2 class="waitlist-h">1,000 artists. <em>$10K each, guaranteed.</em></h2>
     <p class="waitlist-sub">
-      We're activating the first 1,000 artists with a $10K revenue floor: if your SuperFan
-      subscriptions don't add up to $10K in your first year, Spotify covers the difference.
-      Eligibility: 1,000+ quarterly listeners. NA, UK, CA, AU first.
+      We're activating the first 1,000 independent artists with a $10K revenue floor: if your
+      SuperFan subscriptions don't add up to $10K in your first year, Spotify covers the difference.
     </p>
 
     <form class="waitlist-form" id="waitlistForm">
@@ -1334,28 +1333,35 @@ footer {
         <input class="form-input" type="email" id="email" required placeholder="hello@example.com">
       </div>
       <div>
+        <label class="form-label" for="phone">Phone</label>
+        <input class="form-input" type="tel" id="phone" required placeholder="+1 555 123 4567">
+      </div>
+      <div>
         <label class="form-label" for="listeners-form">Current monthly listeners</label>
         <select class="form-select" id="listeners-form" required>
           <option value="">Select range</option>
-          <option value="under-1k">Under 1,000</option>
-          <option value="1k-10k">1,000 – 10,000</option>
-          <option value="10k-50k">10,000 – 50,000</option>
-          <option value="50k-250k">50,000 – 250,000</option>
-          <option value="250k-plus">250,000+</option>
+          <option value="under-50k">Under 50,000</option>
+          <option value="50k-100k">50,000 – 100,000</option>
+          <option value="100k-500k">100,000 – 500,000</option>
+          <option value="500k-5m">500,000 – 5M</option>
+          <option value="5m-plus">5M+</option>
         </select>
       </div>
       <div>
-        <label class="form-label" for="region">Primary region</label>
-        <select class="form-select" id="region" required>
-          <option value="">Select region</option>
-          <option value="us">United States</option>
-          <option value="uk">United Kingdom</option>
-          <option value="ca">Canada</option>
-          <option value="au">Australia</option>
-          <option value="eu">EU (waitlisted, Year 2)</option>
-          <option value="latam">LATAM (waitlisted, Year 2)</option>
-          <option value="other">Other (waitlisted, Year 2)</option>
-        </select>
+        <label class="form-label" for="instagram">Instagram link</label>
+        <input class="form-input" type="url" id="instagram" placeholder="https://instagram.com/...">
+      </div>
+      <div>
+        <label class="form-label" for="tiktok">TikTok link</label>
+        <input class="form-input" type="url" id="tiktok" placeholder="https://tiktok.com/@...">
+      </div>
+      <div>
+        <label class="form-label" for="youtube">YouTube link</label>
+        <input class="form-input" type="url" id="youtube" placeholder="https://youtube.com/@...">
+      </div>
+      <div>
+        <label class="form-label" for="otherSocial">Other link (website, X, SoundCloud…)</label>
+        <input class="form-input" type="url" id="otherSocial" placeholder="https://...">
       </div>
       <div class="form-field-full">
         <label class="form-label" for="why">Why super-fans? (optional, helps us prioritize)</label>
@@ -1367,14 +1373,8 @@ footer {
     <div class="waitlist-success" id="successMsg">
       <div class="success-icon">✓</div>
       <div class="success-h">You're on the list.</div>
-      <p class="success-text">We'll review pilot applications weekly. NA/UK/CA/AU artists with 1K+ monthly listeners get priority outreach.</p>
+      <p class="success-text">We review pilot applications weekly.</p>
       <div class="success-position" id="positionPill">Position #—</div>
-    </div>
-
-    <div class="waitlist-trust">
-      <div class="trust-item">No commitment</div>
-      <div class="trust-item">Cancel anytime</div>
-      <div class="trust-item">Keep your Spotify for Artists</div>
     </div>
   </div>
 </section>
@@ -1392,26 +1392,13 @@ footer {
         <span class="faq-toggle">+</span>
       </div>
       <div class="faq-a">
-        Three things. First, distribution: Patreon needs you to drive fans there from your own
-        socials. SuperFan lives inside Spotify — fans you already have, surfaced where they
-        already listen. Second, take rate: 20% vs Patreon's 8–12% plus 3% payment fees (so
-        roughly equivalent net once you account for processing), but with discovery added.
-        Third, content protection: Patreon's only DRM is rare DMCA takedowns; SuperFan
-        ships with watermarking, screenshot detection, automated DMCA, and GDPR right-to-erasure
-        on day one. Vault.fm shut down because they lacked this stack.
-      </div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">
-        <span>What if I'm signed to a label?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        You and your label work that out — SuperFan content is treated like merch:
-        your call what to share, your responsibility within your contracts. We do not require
-        master-rights re-licensing. The platform launches DIY-first; we'll talk to majors in
-        Year 2 once the model is proven. If you're unsure about your label terms, hold off and
-        join the waitlist anyway.
+        Two things. First, the audience is already here — SuperFan lives inside Spotify,
+        surfaced to the fans who already listen to you. You don't need to build a separate
+        funnel; the fans are one tap away from the track they're playing right now.
+        Second, your content is actually protected: SuperFan ships with watermarking,
+        screenshot detection, automated DMCA, and GDPR right-to-erasure on day one. Pre-release
+        snippets, exclusive drops, and behind-the-scenes content stay where you put them —
+        not leaked across the internet within hours.
       </div>
     </div>
     <div class="faq-item">
@@ -1432,13 +1419,12 @@ footer {
         <span class="faq-toggle">+</span>
       </div>
       <div class="faq-a">
-        Two reasons. Operational: payment processing alone runs ~5%, content protection stack
-        (watermarking, DMCA, GDPR) costs another ~10–15M annually that we absorb across
-        all artists. Distribution: you don't pay for the audience — they're already on
-        Spotify (766M of them). Apple App Store charges 30% for distribution alone.
-        We're priced between Patreon (8–12% but no discovery) and YouTube Memberships
-        (30% with audio second-class). If 20% is a dealbreaker, our fallback model at
-        15% is published in our investor materials.
+        Because we run the whole machine for you. Payment processing across 180+ markets,
+        the content-protection stack (watermarking, screenshot detection, automated DMCA,
+        GDPR compliance), customer support, platform reliability, and ongoing product
+        development — all on us. More importantly, you're not paying to acquire your audience:
+        they're already on Spotify, listening to you today. We bring qualified, engaged
+        listeners directly into your SuperFan tier with zero outbound effort from you.
       </div>
     </div>
     <div class="faq-item">
@@ -1459,11 +1445,10 @@ footer {
         <span class="faq-toggle">+</span>
       </div>
       <div class="faq-a">
-        1,000 artists, 90-day program, $10K Year 1 revenue floor (Spotify covers any
-        shortfall). Live in NA, UK, Canada, Australia first. Selection prioritizes
-        1K–100K monthly listeners (the "DIY mid-tier" where unit economics are clearest).
-        After pilot: soft launch to all eligible artists, then global rollout Year 2.
-        Modeled on YouTube Memberships' 2018 launch playbook.
+        1,000 independent artists, 90-day program, $10K Year-1 revenue floor (Spotify
+        covers any shortfall). Selection prioritizes the DIY mid-tier where unit
+        economics are clearest. After the pilot: open access for every eligible
+        independent artist.
       </div>
     </div>
   </div>
@@ -1472,10 +1457,6 @@ footer {
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">Spotify Super<span class="accent">Fan</span></div>
-    <div class="footer-meta">
-      Funnel prototype · v1 · May 17, 2026 · Genesis IT School Stream 16
-    </div>
-    <div class="footer-meta footer-prototype">Prototype — not production</div>
   </div>
 </footer>
 
@@ -1486,7 +1467,7 @@ footer {
 const SUPER_LISTENER_RATE = 0.02;  // 2% of MAL (Spotify S4A definition)
 const CONVERSION_RATE     = 0.10;  // 10% — Patreon-like base benchmark
 const ARTIST_SHARE        = 0.80;  // 80/20 split (Spotify takes 20%)
-const AVG_ACTIVE_MONTHS_Y1 = 9;    // ~9 months active in Y1 with 8%/mo churn
+const MONTHS_IN_YEAR      = 12;    // potential annual income (no churn discount)
 const Y3_MULTIPLIER       = 3.0;   // accumulated cohort + modest audience growth
 
 // Streaming math sourced from:
@@ -1545,7 +1526,7 @@ function calc() {
   const fans           = Math.round(superListeners * CONVERSION_RATE);
   const monthlyGross   = fans * selectedPrice;
   const monthlyToArt   = monthlyGross * ARTIST_SHARE;
-  const yearOne        = fans * selectedPrice * ARTIST_SHARE * AVG_ACTIVE_MONTHS_Y1;
+  const yearOne        = fans * selectedPrice * ARTIST_SHARE * MONTHS_IN_YEAR;
   const yearThree      = yearOne * Y3_MULTIPLIER;
   const streamingGrossYear = totalListeners * STREAMS_PER_LISTENER_MONTH * PAY_PER_STREAM * 12;
 
@@ -1603,8 +1584,12 @@ document.getElementById('waitlistForm').addEventListener('submit', (e) => {
   const entry = {
     artistName: document.getElementById('artistName').value.trim(),
     email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
     listeners: document.getElementById('listeners-form').value,
-    region: document.getElementById('region').value,
+    instagram: document.getElementById('instagram').value.trim(),
+    tiktok: document.getElementById('tiktok').value.trim(),
+    youtube: document.getElementById('youtube').value.trim(),
+    otherSocial: document.getElementById('otherSocial').value.trim(),
     why: document.getElementById('why').value.trim(),
     submittedAt: new Date().toISOString()
   };
