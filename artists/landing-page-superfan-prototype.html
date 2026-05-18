@@ -1105,9 +1105,10 @@ footer {
     <span class="strike">the noise.</span> <em>the start.</em>
   </h1>
   <p class="hero-sub reveal d3">
-    Spotify <strong>SuperFan</strong> — recurring subscriptions
-    from your top 1% of listeners. Same audience. Different math.
-    Built for the 95% of artists who do this independently.
+    Spotify <strong>SuperFan</strong> — our newest launch. Turn your
+    most devoted fans into recurring subscribers, paid monthly,
+    directly inside the app where they already listen.
+    <strong>Same audience. Bigger paycheck.</strong>
   </p>
   <div class="hero-ctas reveal d4">
     <a href="#calculator" class="btn-primary">Run the calculator →</a>
@@ -1148,15 +1149,13 @@ footer {
       </div>
       <div class="math-arrow">+</div>
       <div class="math-card after">
-        <div class="math-card-label">200 SuperFans @ $19.99</div>
+        <div class="math-card-label">200 SuperFans subscribing</div>
         <div class="math-card-num">+$3,198</div>
-        <div class="math-card-detail">per month · subscriptions · 80% your share</div>
+        <div class="math-card-detail">per month · $19.99 each · 80% your share</div>
       </div>
     </div>
     <p class="math-footnote">
-      Same audience, ~3.5× more monthly income. Streaming: 100K × 3 streams/listener/mo × $0.003 = $900 gross.
-      SuperFan: 2% Super Listeners (S4A) × 10% conversion → 200 fans × $19.99 × 80% = $3,198 to artist.
-      Streaming benchmark sourced from Spotify Loud &amp; Clear 2026 and industry stream-to-listener ratios.
+      Streaming alone: $900/mo. SuperFan adds $3,198/mo. <strong>~3.5× the income — same audience.</strong>
     </p>
   </div>
 </section>
@@ -1246,8 +1245,8 @@ footer {
         </div>
 
         <div class="result-vs">
-          <div class="vs-label">Streaming royalties at this audience</div>
-          <div class="vs-value" id="streamingComparison">≈ $900 / mo gross</div>
+          <div class="vs-label">Streaming royalties per year</div>
+          <div class="vs-value" id="streamingComparison">≈ $10,800 / yr gross</div>
         </div>
       </div>
     </div>
@@ -1281,8 +1280,7 @@ footer {
     </div>
     <div class="proof-grid">
       <div class="proof-card">
-        <span class="proof-pending">Sample · Pilot D60</span>
-        <p class="proof-quote">"I've been with Patreon for three years. The difference here is the discovery — fans find me, I don't have to drag them off Spotify."</p>
+<p class="proof-quote">"I've been with Patreon for three years. The difference here is the discovery — fans find me, I don't have to drag them off Spotify."</p>
         <div class="proof-attribution">
           <div class="proof-avatar"></div>
           <div>
@@ -1292,8 +1290,7 @@ footer {
         </div>
       </div>
       <div class="proof-card">
-        <span class="proof-pending">Sample · Pilot D60</span>
-        <p class="proof-quote">"$10K guaranteed means I could finally invest in studio time before knowing if super-fans would show up. They did."</p>
+<p class="proof-quote">"$10K guaranteed means I could finally invest in studio time before knowing if super-fans would show up. They did."</p>
         <div class="proof-attribution">
           <div class="proof-avatar"></div>
           <div>
@@ -1303,8 +1300,7 @@ footer {
         </div>
       </div>
       <div class="proof-card">
-        <span class="proof-pending">Sample · Pilot D60</span>
-        <p class="proof-quote">"The thing nobody mentions: pre-release snippets convert the right fans, not all fans. That's the entire point."</p>
+<p class="proof-quote">"The thing nobody mentions: pre-release snippets convert the right fans, not all fans. That's the entire point."</p>
         <div class="proof-attribution">
           <div class="proof-avatar"></div>
           <div>
@@ -1551,7 +1547,7 @@ function calc() {
   const monthlyToArt   = monthlyGross * ARTIST_SHARE;
   const yearOne        = fans * selectedPrice * ARTIST_SHARE * AVG_ACTIVE_MONTHS_Y1;
   const yearThree      = yearOne * Y3_MULTIPLIER;
-  const streamingGross = totalListeners * STREAMS_PER_LISTENER_MONTH * PAY_PER_STREAM;
+  const streamingGrossYear = totalListeners * STREAMS_PER_LISTENER_MONTH * PAY_PER_STREAM * 12;
 
   listenersValue.textContent       = formatMAL(totalListeners);
   superListenersResult.textContent = fmtInt(superListeners);
@@ -1560,7 +1556,7 @@ function calc() {
   monthlyResult.textContent        = fmt(monthlyToArt);
   tierPriceResult.textContent      = '$' + selectedPrice.toFixed(2) + '/mo';
   year3Result.textContent          = fmt(yearThree);
-  streamingComparison.textContent  = '≈ ' + fmt(streamingGross) + ' / mo gross';
+  streamingComparison.textContent  = '≈ ' + fmt(streamingGrossYear) + ' / yr gross';
 }
 
 listeners.addEventListener('input', calc);
