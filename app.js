@@ -23,6 +23,7 @@
 
   const screens = {
     home:     document.getElementById('screen-home'),
+    story:    document.getElementById('screen-story'),
     profile:  document.getElementById('screen-profile'),
     tiers:    document.getElementById('screen-tiers'),
     checkout: document.getElementById('screen-checkout'),
@@ -130,5 +131,111 @@
 
   /* Card tap on the featured mix also opens popup */
   document.getElementById('card-featured').addEventListener('click', openPopup);
+
+  /* ============================================================
+     ============ WRAPPED FUNNEL — story carousel ===============
+     ============================================================ */
+
+  /* ---------- STORY NAVIGATION ---------- */
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const bars   = Array.from(document.querySelectorAll('.story-progress .bar'));
+  let slideIdx = 0;
+
+  function renderSlide() {
+    slides.forEach((s, i) => s.classList.toggle('active', i === slideIdx));
+    bars.forEach((b, i) => {
+      b.classList.remove('active', 'done');
+      if (i < slideIdx) b.classList.add('done');
+      else if (i === slideIdx) b.classList.add('active');
+    });
+  }
+  function nextSlide() { if (slideIdx < slides.length - 1) { slideIdx++; renderSlide(); } }
+  function prevSlide() { if (slideIdx > 0) { slideIdx--; renderSlide(); } }
+
+  /* ---------- STORY AUDIO + MUTE ---------- */
+  const storyAudio = document.getElementById('storyAudio');
+  const muteBtn = document.getElementById('muteStory');
+  let storyMuted = false;
+
+  function playStoryAudio() {
+    if (!storyAudio) return;
+    storyAudio.muted = storyMuted;
+    storyAudio.currentTime = 0;
+    const p = storyAudio.play();
+    if (p && p.catch) p.catch(() => {}); /* iOS autoplay-blocked silent fail */
+  }
+  function stopStoryAudio() {
+    if (!storyAudio) return;
+    storyAudio.pause();
+    storyAudio.currentTime = 0;
+  }
+  if (muteBtn) {
+    muteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      storyMuted = !storyMuted;
+      if (storyAudio) storyAudio.muted = storyMuted;
+      muteBtn.classList.toggle('muted', storyMuted);
+      muteBtn.setAttribute('aria-label', storyMuted ? 'Unmute' : 'Mute');
+    });
+  }
+
+  function openStory() {
+    closePopup(); /* dismiss the SuperFan invite if it's still open */
+    slideIdx = 0;
+    renderSlide();
+    show('story');
+    playStoryAudio();
+  }
+  function closeStory() {
+    stopStoryAudio();
+    show('home');
+  }
+
+  document.getElementById('openWrapped').addEventListener('click', openStory);
+  document.getElementById('closeStory').addEventListener('click', closeStory);
+  document.getElementById('tapNext').addEventListener('click', nextSlide);
+  document.getElementById('tapPrev').addEventListener('click', prevSlide);
+
+  /* Keyboard nav for desktop preview */
+  window.addEventListener('keydown', (e) => {
+    if (!screens.story.classList.contains('active')) return;
+    if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+    else if (e.key === 'ArrowLeft') prevSlide();
+    else if (e.key === 'Escape') closeStory();
+  });
+
+  /* Slide 4 "Become SuperFan" → existing profile screen */
+  document.getElementById('becomeSuperfan').addEventListener('click', (e) => {
+    e.stopPropagation();
+    stopStoryAudio();
+    show('profile');
+  });
+
+  /* Stop tap zones from swallowing CTAs on story slides */
+  document.querySelectorAll('.cta-superfan, .share-btn, .story-chrome').forEach(el => {
+    el.addEventListener('click', (e) => e.stopPropagation());
+  });
+
+  /* ---------- SHARE BUTTON (native share sheet) ---------- */
+  const shareBtn = document.querySelector('.share-btn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const data = {
+        title: 'My 2026 Wrapped',
+        text: "I'm in the top 1% of Playboi Carti's fans this year. Check out my Spotify Wrapped 2026.",
+        url: window.location.href
+      };
+      try {
+        if (navigator.share) {
+          await navigator.share(data);
+        } else if (navigator.clipboard) {
+          await navigator.clipboard.writeText(data.url);
+          shareBtn.textContent = 'Link copied!';
+          setTimeout(() => { shareBtn.textContent = 'Share this story'; }, 1800);
+        }
+      } catch (_) { /* user cancelled share sheet */ }
+    });
+  }
 
 })();

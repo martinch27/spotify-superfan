@@ -22,5 +22,9 @@ Spotify*.png
 # Wrapped funnel — separate repo, tracked independently
 wrapped/
 
+# S4A clone — separate repo, tracked independently
+s4a-clone/
+S4A/
+
 # Claude
 .claude/
