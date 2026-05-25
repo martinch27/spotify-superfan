@@ -1277,6 +1277,13 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
+  /* Let taps on empty space / text pass through to the .tap nav zones,
+     but keep buttons inside the body fully clickable. */
+  pointer-events: none;
+}
+.slide__body button,
+.slide__body a {
+  pointer-events: auto;
 }
 .slide__body--center { text-align: center; align-items: center; gap: 18px; }
 .slide__body--intro { justify-content: flex-end; flex: 1; text-align: left; padding-bottom: 20px; }
@@ -1332,17 +1339,17 @@ body {
 .slide--minutes .slide__sub { color: rgba(42,21,5,.85); }
 .slide--minutes .slide__sub b { color: #2A1505; }
 .huge-number {
-  font-size: clamp(76px, 25vw, 124px);
+  font-size: clamp(60px, 20vw, 104px);
   font-weight: 900;
   font-style: italic;
   letter-spacing: -.04em;
   line-height: .9;
   color: #7B5BFF;
   text-shadow: 3px 3px 0 #2A1505;
-  display: inline-block;
+  display: block;
+  text-align: center;
   white-space: nowrap;
-  transform: translateX(-4px);
-  max-width: 100%;
+  width: 100%;
 }
 
 /* slide 3 — GENRES */
@@ -1583,9 +1590,9 @@ body {
   to   { opacity: 1; }
 }
 @keyframes wnumberPop {
-  0%   { opacity: 0; transform: translateX(-4px) scale(.55) rotate(-4deg); }
-  60%  { opacity: 1; transform: translateX(-4px) scale(1.06); }
-  100% {              transform: translateX(-4px) scale(1) rotate(0); }
+  0%   { opacity: 0; transform: scale(.55) rotate(-4deg); }
+  60%  { opacity: 1; transform: scale(1.06) rotate(0); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
 }
 @keyframes wringPulse {
   0%, 100% { transform: scale(1); }
