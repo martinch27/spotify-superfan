@@ -1273,12 +1273,13 @@ body {
 
 .slide__body {
   position: relative;
-  z-index: 5;
+  /* Above .tap zones (z 20) so buttons inside the body render on top of
+     the prev/next overlays. pointer-events:none lets empty body areas
+     fall through to the tap zones; buttons re-enable events on themselves. */
+  z-index: 25;
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* Let taps on empty space / text pass through to the .tap nav zones,
-     but keep buttons inside the body fully clickable. */
   pointer-events: none;
 }
 .slide__body button,
@@ -1558,7 +1559,7 @@ body {
   letter-spacing: -.1px;
   cursor: pointer;
   transition: transform .15s ease;
-  z-index: 5;
+  z-index: 25; /* above .tap zones (z 20) */
   position: relative;
   font-family: inherit;
 }
